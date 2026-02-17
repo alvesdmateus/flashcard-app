@@ -8,7 +8,7 @@ import { aiApi, type GeneratedCard } from "@/lib/ai-api";
 import { flashcardApi } from "@/lib/flashcard-api";
 import { TIER_LIMITS } from "@/lib/feature-limits";
 import type { FlashcardResponse } from "@/lib/deck-api";
-import { Button } from "@flashcard/ui";
+import { Button } from "@versado/ui";
 
 interface AIGenerateModalProps {
   isOpen: boolean;
@@ -153,17 +153,17 @@ export function AIGenerateModal({
             <Sparkles className="mx-auto h-8 w-8 text-primary-500" />
             <h3 className="mt-2 font-semibold text-neutral-900">Generation Limit Reached</h3>
             <p className="mt-1 text-sm text-neutral-600">
-              Upgrade to Premium for unlimited AI generations.
+              Go Fluent for unlimited AI generations.
             </p>
             <Button
               className="mt-3"
               size="sm"
               onClick={() => {
                 handleClose();
-                window.location.href = "/billing";
+                window.location.href = "/fluent";
               }}
             >
-              Upgrade to Premium
+              Go Fluent
             </Button>
           </div>
         ) : !hasCards ? (

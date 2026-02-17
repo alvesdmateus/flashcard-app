@@ -1,4 +1,4 @@
-export type UserTier = "free" | "premium" | "team";
+export type UserTier = "free" | "fluent";
 
 export interface User {
   id: string;

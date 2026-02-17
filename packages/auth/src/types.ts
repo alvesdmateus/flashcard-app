@@ -1,4 +1,4 @@
-import type { UserTier } from "@flashcard/core/entities";
+import type { UserTier } from "@versado/core/entities";
 
 /** Payload encoded in the JWT access token */
 export interface TokenPayload {

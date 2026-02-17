@@ -11,12 +11,17 @@ const CODE_MAP: Record<string, { title: string; description: string }> = {
   AI_LIMIT_REACHED: {
     title: "AI Limit Reached",
     description:
-      "You've reached your AI generation limit. Upgrade to Premium for unlimited generations.",
+      "You've reached your AI generation limit. Go Fluent for unlimited generations.",
   },
   TIER_LIMIT: {
     title: "Plan Limit Reached",
     description:
-      "You've reached a limit on your current plan. Upgrade to Premium for more.",
+      "You've reached a limit on your current plan. Go Fluent for more.",
+  },
+  REVIEW_LIMIT_REACHED: {
+    title: "Daily Review Limit",
+    description:
+      "You've reached your daily review limit. Go Fluent for unlimited reviews.",
   },
   // 503 specific codes
   AI_SERVICE_UNAVAILABLE: {

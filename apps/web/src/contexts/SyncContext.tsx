@@ -6,17 +6,18 @@ import {
   useRef,
   type ReactNode,
 } from "react";
-import { IndexedDBAdapter } from "@flashcard/storage";
+import { IndexedDBAdapter } from "@versado/storage";
 import {
   SyncStorage,
   SyncClient,
   SyncEngine,
   type SyncStatus,
   type SyncEvent,
-} from "@flashcard/sync";
+} from "@versado/sync";
 import { useAuth } from "@/hooks/useAuth";
 import { getAccessToken } from "@/lib/api-client";
 import { setSyncInstances } from "@/lib/sync-aware-api";
+import { TIER_LIMITS } from "@/lib/feature-limits";
 
 const API_BASE = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
 
@@ -30,7 +31,9 @@ export interface SyncContextValue {
 export const SyncContext = createContext<SyncContextValue | null>(null);
 
 export function SyncProvider({ children }: { children: ReactNode }) {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
+  const tier = user?.tier ?? "free";
+  const canSync = TIER_LIMITS[tier].canUseOffline;
   const [syncStatus, setSyncStatus] = useState<SyncStatus>("idle");
   const [pendingChanges, setPendingChanges] = useState(0);
   const [lastSyncedAt, setLastSyncedAt] = useState<string | null>(null);
@@ -39,8 +42,8 @@ export function SyncProvider({ children }: { children: ReactNode }) {
   const storageRef = useRef<SyncStorage | null>(null);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      // Not logged in — tear down if active
+    if (!isAuthenticated || !canSync) {
+      // Not logged in or free tier — tear down if active
       if (engineRef.current) {
         engineRef.current.stop();
         engineRef.current = null;
@@ -52,7 +55,7 @@ export function SyncProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    // Initialize sync
+    // Initialize sync (Fluent only)
     const adapter = new IndexedDBAdapter();
     const storage = new SyncStorage(adapter);
     const client = new SyncClient({
@@ -82,7 +85,7 @@ export function SyncProvider({ children }: { children: ReactNode }) {
       storageRef.current = null;
       setSyncInstances(null, null);
     };
-  }, [isAuthenticated]);
+  }, [isAuthenticated, canSync]);
 
   const sync = useCallback(async () => {
     if (engineRef.current) {

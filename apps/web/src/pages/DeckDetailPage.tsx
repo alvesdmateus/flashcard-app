@@ -17,7 +17,7 @@ import { AIGenerateModal } from "@/components/decks/AIGenerateModal";
 import { ExportDeckModal } from "@/components/decks/ExportDeckModal";
 import { CardFilters } from "@/components/decks/CardFilters";
 import { EmptyState, ConfirmDialog, CardListSkeleton } from "@/components/shared";
-import { Button } from "@flashcard/ui";
+import { Button } from "@versado/ui";
 
 export function DeckDetailPage() {
   const { deckId } = useParams<{ deckId: string }>();

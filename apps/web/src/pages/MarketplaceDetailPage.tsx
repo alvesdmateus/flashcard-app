@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import { Layers, Download, Users } from "lucide-react";
-import { Button } from "@flashcard/ui";
+import { Button } from "@versado/ui";
 import {
   marketplaceApi,
   type MarketplaceDetail,

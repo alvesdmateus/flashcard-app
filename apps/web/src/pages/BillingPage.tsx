@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router";
 import {
   Check,
@@ -12,33 +12,61 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/contexts/ToastContext";
 import { useErrorNotification } from "@/contexts/ErrorNotificationContext";
-import { billingApi, type Subscription } from "@/lib/billing-api";
+import { billingApi, type Subscription, type Price } from "@/lib/billing-api";
 import { ConfirmDialog } from "@/components/shared";
-import { Button } from "@flashcard/ui";
+import { Button } from "@versado/ui";
 
-const PREMIUM_MONTHLY_PRICE_ID = import.meta.env
-  .VITE_STRIPE_PRICE_ID_PREMIUM_MONTHLY as string;
+const LOCALE_CURRENCY_MAP: Record<string, string> = {
+  "pt-BR": "brl",
+  "en-US": "usd",
+  "en-GB": "gbp",
+  "es-MX": "mxn",
+  "es-AR": "ars",
+  "ja-JP": "jpy",
+  "en-AU": "aud",
+  "en-CA": "cad",
+  "de-DE": "eur",
+  "fr-FR": "eur",
+  "es-ES": "eur",
+  "it-IT": "eur",
+};
+
+function getCurrencyFromLocale(): string {
+  const locale = navigator.language;
+  return LOCALE_CURRENCY_MAP[locale] ?? "usd";
+}
+
+function formatPrice(unitAmount: number, currency: string): string {
+  return new Intl.NumberFormat(navigator.language, {
+    style: "currency",
+    currency: currency.toUpperCase(),
+  }).format(unitAmount / 100);
+}
 
 const FREE_FEATURES = [
   { label: "Up to 5 decks", included: true },
   { label: "100 cards per deck", included: true },
+  { label: "50 reviews per day", included: true },
   { label: "SM-2 spaced repetition", included: true },
   { label: "Basic study stats", included: true },
-  { label: "Marketplace browsing", included: true },
-  { label: "Unlimited decks", included: false },
-  { label: "Unlimited cards", included: false },
-  { label: "AI card generation", included: false },
-  { label: "Sell decks on marketplace", included: false },
+  { label: "Browse & buy on marketplace", included: true },
+  { label: "10 AI generations", included: true },
+  { label: "Unlimited decks & cards", included: false },
+  { label: "Unlimited reviews", included: false },
+  { label: "Sell on marketplace", included: false },
+  { label: "Offline mode", included: false },
 ];
 
-const PREMIUM_FEATURES = [
-  { label: "Unlimited decks", included: true },
-  { label: "Unlimited cards", included: true },
+const FLUENT_FEATURES = [
+  { label: "Unlimited decks & cards", included: true },
+  { label: "Unlimited daily reviews", included: true },
+  { label: "Unlimited AI generation", included: true },
   { label: "SM-2 spaced repetition", included: true },
   { label: "Advanced study analytics", included: true },
-  { label: "Marketplace browsing", included: true },
-  { label: "AI card generation", included: true },
-  { label: "Sell decks on marketplace", included: true },
+  { label: "Browse & buy on marketplace", included: true },
+  { label: "Sell on marketplace", included: true },
+  { label: "Seller priority placement", included: true },
+  { label: "Offline mode & sync", included: true },
   { label: "Priority support", included: true },
 ];
 
@@ -52,12 +80,29 @@ export function BillingPage() {
   const [subLoading, setSubLoading] = useState(true);
   const [isCancelOpen, setIsCancelOpen] = useState(false);
   const [isCanceling, setIsCanceling] = useState(false);
+  const [prices, setPrices] = useState<Price[]>([]);
+  const [billingInterval, setBillingInterval] = useState<"month" | "year">("month");
+
+  const userCurrency = useMemo(() => getCurrencyFromLocale(), []);
+
+  const selectedPrice = useMemo(() => {
+    const byUserCurrency = prices.filter((p) => p.currency === userCurrency);
+    const pool = byUserCurrency.length > 0 ? byUserCurrency : prices.filter((p) => p.currency === "usd");
+    return pool.find((p) => p.recurring?.interval === billingInterval) ?? pool[0] ?? null;
+  }, [prices, userCurrency, billingInterval]);
+
+  const hasMultipleIntervals = useMemo(() => {
+    const byUserCurrency = prices.filter((p) => p.currency === userCurrency);
+    const pool = byUserCurrency.length > 0 ? byUserCurrency : prices.filter((p) => p.currency === "usd");
+    const intervals = new Set(pool.map((p) => p.recurring?.interval).filter(Boolean));
+    return intervals.size > 1;
+  }, [prices, userCurrency]);
 
   // Handle post-checkout redirect
   useEffect(() => {
     if (searchParams.get("success") === "true") {
       refreshUser();
-      showToast("Welcome to Premium! Your account has been upgraded.");
+      showToast("Welcome to Fluent! Your learning just became unforgettable.");
       setSearchParams({}, { replace: true });
     } else if (searchParams.get("canceled") === "true") {
       showToast("Checkout canceled", "info");
@@ -65,23 +110,28 @@ export function BillingPage() {
     }
   }, [searchParams, setSearchParams, refreshUser, showToast]);
 
-  // Fetch subscription
+  // Fetch subscription or prices
   useEffect(() => {
-    if (user?.tier === "premium") {
+    if (user?.tier === "fluent") {
       billingApi
         .getSubscription()
         .then(({ subscription }) => setSubscription(subscription))
         .catch(() => {})
         .finally(() => setSubLoading(false));
     } else {
-      setSubLoading(false);
+      billingApi
+        .getPrices()
+        .then(({ prices }) => setPrices(prices))
+        .catch(() => {})
+        .finally(() => setSubLoading(false));
     }
   }, [user?.tier]);
 
   async function handleUpgrade() {
+    if (!selectedPrice) return;
     setIsLoading(true);
     try {
-      const { url } = await billingApi.createCheckout(PREMIUM_MONTHLY_PRICE_ID);
+      const { url } = await billingApi.createCheckout(selectedPrice.id);
       window.location.href = url;
     } catch (err) {
       showErrorNotification(err, { onRetry: handleUpgrade });
@@ -129,30 +179,30 @@ export function BillingPage() {
     }
   }
 
-  const isPremium = user?.tier === "premium";
+  const isFluent = user?.tier === "fluent";
 
   return (
     <div className="pb-4">
       {/* Header */}
       <div className="px-5 pt-6 pb-4">
         <h1 className="text-2xl font-bold text-neutral-900">
-          {isPremium ? "Your Plan" : "Upgrade to Premium"}
+          {isFluent ? "Your Plan" : "From curious to fluent."}
         </h1>
         <p className="mt-1 text-sm text-neutral-500">
-          {isPremium
+          {isFluent
             ? "Manage your subscription and billing"
             : "Unlock the full potential of your study experience"}
         </p>
       </div>
 
-      {isPremium && subscription && !subLoading ? (
-        /* Premium user — subscription management */
+      {isFluent && subscription && !subLoading ? (
+        /* Fluent user — subscription management */
         <div className="px-5 space-y-4">
           {/* Current plan card */}
           <div className="rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 p-5">
             <div className="flex items-center gap-2">
               <Crown className="h-5 w-5 text-white" />
-              <h3 className="text-lg font-bold text-white">Premium Plan</h3>
+              <h3 className="text-lg font-bold text-white">Versado Fluent</h3>
               <span
                 className={`ml-auto rounded-full px-2.5 py-0.5 text-xs font-medium ${
                   subscription.cancelAtPeriodEnd
@@ -219,7 +269,7 @@ export function BillingPage() {
             )}
           </div>
         </div>
-      ) : !isPremium ? (
+      ) : !isFluent ? (
         /* Free user — pricing comparison */
         <div className="px-5 space-y-4">
           {/* Free plan */}
@@ -254,24 +304,52 @@ export function BillingPage() {
             </div>
           </div>
 
-          {/* Premium plan */}
+          {/* Fluent plan */}
           <div className="rounded-xl border-2 border-primary-500 bg-neutral-0 p-5 shadow-card">
             <div className="flex items-center gap-2">
               <h3 className="text-base font-semibold text-neutral-700">
-                Premium
+                Versado Fluent
               </h3>
               <span className="rounded-full bg-primary-100 px-2 py-0.5 text-xs font-medium text-primary-700">
                 Recommended
               </span>
             </div>
-            <p className="mt-1 text-2xl font-bold text-neutral-900">
-              $9.99
-              <span className="text-sm font-normal text-neutral-500">
-                /month
-              </span>
-            </p>
+            {selectedPrice && (
+              <p className="mt-1 text-2xl font-bold text-neutral-900">
+                {formatPrice(selectedPrice.unitAmount, selectedPrice.currency)}
+                <span className="text-sm font-normal text-neutral-500">
+                  /{selectedPrice.recurring?.interval === "year" ? "year" : "month"}
+                </span>
+              </p>
+            )}
+            {hasMultipleIntervals && (
+              <div className="mt-3 flex rounded-lg bg-neutral-100 p-0.5">
+                <button
+                  type="button"
+                  onClick={() => setBillingInterval("month")}
+                  className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                    billingInterval === "month"
+                      ? "bg-neutral-0 text-neutral-900 shadow-sm"
+                      : "text-neutral-500"
+                  }`}
+                >
+                  Monthly
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setBillingInterval("year")}
+                  className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                    billingInterval === "year"
+                      ? "bg-neutral-0 text-neutral-900 shadow-sm"
+                      : "text-neutral-500"
+                  }`}
+                >
+                  Yearly
+                </button>
+              </div>
+            )}
             <div className="mt-4 space-y-2.5">
-              {PREMIUM_FEATURES.map((f) => (
+              {FLUENT_FEATURES.map((f) => (
                 <div key={f.label} className="flex items-center gap-2">
                   <Check className="h-4 w-4 text-success-500" />
                   <span className="text-sm text-neutral-700">{f.label}</span>
@@ -279,8 +357,8 @@ export function BillingPage() {
               ))}
             </div>
             <div className="mt-4">
-              <Button fullWidth onClick={handleUpgrade} disabled={isLoading}>
-                {isLoading ? "Redirecting..." : "Upgrade to Premium"}
+              <Button fullWidth onClick={handleUpgrade} disabled={isLoading || !selectedPrice}>
+                {isLoading ? "Redirecting..." : "Go Fluent"}
               </Button>
             </div>
           </div>
@@ -293,7 +371,7 @@ export function BillingPage() {
         onClose={() => setIsCancelOpen(false)}
         onConfirm={handleCancel}
         title="Cancel Subscription"
-        message="Your premium features will remain active until the end of your current billing period. You can resume anytime before then."
+        message="Your Fluent features will remain active until the end of your current billing period. You can resume anytime before then."
         confirmLabel="Cancel Subscription"
         variant="danger"
         isLoading={isCanceling}

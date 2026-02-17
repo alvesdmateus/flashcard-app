@@ -1,4 +1,4 @@
-import type { AuthResponse, RefreshResponse, PublicProfile } from "@flashcard/auth";
+import type { AuthResponse, RefreshResponse, PublicProfile } from "@versado/auth";
 import { apiClient } from "./api-client";
 
 export const authApi = {

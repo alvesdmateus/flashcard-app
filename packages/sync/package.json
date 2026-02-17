@@ -1,5 +1,5 @@
 {
-  "name": "@flashcard/sync",
+  "name": "@versado/sync",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@flashcard/storage": "workspace:*"
+    "@versado/storage": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.3.3"

@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { setCookie, getCookie, deleteCookie } from "hono/cookie";
-import { registerSchema, loginSchema } from "@flashcard/validation";
-import { REFRESH_TOKEN_COOKIE, REFRESH_TOKEN_EXPIRY } from "@flashcard/auth";
+import { registerSchema, loginSchema } from "@versado/validation";
+import { REFRESH_TOKEN_COOKIE, REFRESH_TOKEN_EXPIRY } from "@versado/auth";
 import { rateLimitMiddleware } from "../middleware/rate-limit";
 import { authMiddleware } from "../middleware/auth";
 import * as authService from "../services/auth-service";

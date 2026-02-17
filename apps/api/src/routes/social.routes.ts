@@ -6,7 +6,7 @@ import {
   feedQuerySchema,
   popularDecksQuerySchema,
   paginationSchema,
-} from "@flashcard/validation";
+} from "@versado/validation";
 import { db } from "../db";
 import { decks, users, follows } from "../db/schema";
 import { validate } from "../lib/validate";

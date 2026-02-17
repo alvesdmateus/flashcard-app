@@ -3,7 +3,7 @@ import { Modal } from "@/components/shared/Modal";
 import { useToast } from "@/contexts/ToastContext";
 import { useErrorNotification } from "@/contexts/ErrorNotificationContext";
 import { profileApi } from "@/lib/profile-api";
-import { Input, Button } from "@flashcard/ui";
+import { Input, Button } from "@versado/ui";
 
 interface DailyGoalModalProps {
   isOpen: boolean;

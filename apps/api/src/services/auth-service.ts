@@ -3,8 +3,8 @@ import { db } from "../db";
 import { users, refreshTokens } from "../db/schema";
 import { hashPassword, verifyPassword } from "../lib/hash";
 import { sign } from "../lib/jwt";
-import { REFRESH_TOKEN_EXPIRY } from "@flashcard/auth";
-import type { AuthResponse, PublicProfile } from "@flashcard/auth";
+import { REFRESH_TOKEN_EXPIRY } from "@versado/auth";
+import type { AuthResponse, PublicProfile } from "@versado/auth";
 import { AppError } from "../middleware/error-handler";
 
 async function hashToken(token: string): Promise<string> {

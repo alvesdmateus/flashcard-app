@@ -1,17 +1,34 @@
-import type { UserTier } from "@flashcard/core/entities";
+import type { UserTier } from "@versado/core/entities";
 
-export const TIER_LIMITS: Record<
-  UserTier,
-  {
-    maxDecks: number;
-    maxCardsPerDeck: number;
-    canUseAI: boolean;
-    aiGenerationLimit: number;
-  }
-> = {
-  free: { maxDecks: 5, maxCardsPerDeck: 100, canUseAI: true, aiGenerationLimit: 10 },
-  premium: { maxDecks: Infinity, maxCardsPerDeck: Infinity, canUseAI: true, aiGenerationLimit: Infinity },
-  team: { maxDecks: Infinity, maxCardsPerDeck: Infinity, canUseAI: true, aiGenerationLimit: Infinity },
+export interface TierLimits {
+  maxDecks: number;
+  maxCardsPerDeck: number;
+  dailyReviewLimit: number;
+  canUseAI: boolean;
+  aiGenerationLimit: number;
+  canListPaidDecks: boolean;
+  canUseOffline: boolean;
+}
+
+export const TIER_LIMITS: Record<UserTier, TierLimits> = {
+  free: {
+    maxDecks: 5,
+    maxCardsPerDeck: 100,
+    dailyReviewLimit: 50,
+    canUseAI: true,
+    aiGenerationLimit: 10,
+    canListPaidDecks: false,
+    canUseOffline: false,
+  },
+  fluent: {
+    maxDecks: Infinity,
+    maxCardsPerDeck: Infinity,
+    dailyReviewLimit: Infinity,
+    canUseAI: true,
+    aiGenerationLimit: Infinity,
+    canListPaidDecks: true,
+    canUseOffline: true,
+  },
 };
 
 export function getTierLimits(tier: UserTier) {

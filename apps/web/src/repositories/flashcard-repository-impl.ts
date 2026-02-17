@@ -1,7 +1,7 @@
-import type { StorageAdapter } from "@flashcard/storage";
-import type { FlashcardRepository } from "@flashcard/core/repositories";
-import type { Flashcard, CreateFlashcardInput } from "@flashcard/core/entities";
-import { createFlashcard } from "@flashcard/core/entities";
+import type { StorageAdapter } from "@versado/storage";
+import type { FlashcardRepository } from "@versado/core/repositories";
+import type { Flashcard, CreateFlashcardInput } from "@versado/core/entities";
+import { createFlashcard } from "@versado/core/entities";
 
 const COLLECTION = "flashcards";
 

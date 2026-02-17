@@ -12,9 +12,9 @@ export default defineConfig({
       registerType: "prompt",
       includeAssets: ["favicon.svg", "apple-touch-icon-180x180.png"],
       manifest: {
-        name: "Flashcard App",
-        short_name: "Flashcard",
-        description: "Study smarter with spaced repetition flashcards",
+        name: "Versado",
+        short_name: "Versado",
+        description: "Study smarter with spaced repetition",
         theme_color: "#3b82f6",
         background_color: "#ffffff",
         display: "standalone",

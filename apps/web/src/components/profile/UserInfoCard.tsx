@@ -4,13 +4,12 @@ export interface UserInfoCardProps {
   displayName: string;
   email: string;
   avatarUrl: string | null;
-  tier: "free" | "premium" | "team";
+  tier: "free" | "fluent";
 }
 
 const TIER_LABELS: Record<string, string> = {
   free: "Free Member",
-  premium: "Premium Gold Member",
-  team: "Team Member",
+  fluent: "Fluent Member",
 };
 
 export function UserInfoCard({ displayName, email, avatarUrl, tier }: UserInfoCardProps) {

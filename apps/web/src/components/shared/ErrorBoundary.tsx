@@ -1,6 +1,6 @@
 import { Component, type ReactNode } from "react";
 import { AlertTriangle } from "lucide-react";
-import { Button } from "@flashcard/ui";
+import { Button } from "@versado/ui";
 
 interface Props {
   children: ReactNode;

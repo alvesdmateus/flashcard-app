@@ -1,4 +1,4 @@
-import type { PublicProfile } from "@flashcard/auth";
+import type { PublicProfile } from "@versado/auth";
 import { apiClient } from "./api-client";
 
 export interface UserPreferences {

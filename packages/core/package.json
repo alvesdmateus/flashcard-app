@@ -1,5 +1,5 @@
 {
-  "name": "@flashcard/core",
+  "name": "@versado/core",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -16,7 +16,7 @@
     "test": "bun test"
   },
   "dependencies": {
-    "@flashcard/algorithms": "workspace:*"
+    "@versado/algorithms": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.3.3"

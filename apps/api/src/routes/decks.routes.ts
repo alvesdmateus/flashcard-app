@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { eq, and } from "drizzle-orm";
-import { createDeckSchema, updateDeckSchema, idSchema } from "@flashcard/validation";
+import { createDeckSchema, updateDeckSchema, idSchema } from "@versado/validation";
 import { db } from "../db";
 import { decks, flashcards } from "../db/schema";
 import { AppError } from "../middleware/error-handler";

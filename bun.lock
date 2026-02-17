@@ -9,13 +9,13 @@
       },
     },
     "apps/api": {
-      "name": "@flashcard/api",
+      "name": "@versado/api",
       "version": "0.0.1",
       "dependencies": {
-        "@flashcard/algorithms": "workspace:*",
-        "@flashcard/auth": "workspace:*",
-        "@flashcard/core": "workspace:*",
-        "@flashcard/validation": "workspace:*",
+        "@versado/algorithms": "workspace:*",
+        "@versado/auth": "workspace:*",
+        "@versado/core": "workspace:*",
+        "@versado/validation": "workspace:*",
         "bcrypt": "^5.1.1",
         "drizzle-orm": "^0.36.0",
         "hono": "^4.6.0",
@@ -34,17 +34,17 @@
       },
     },
     "apps/web": {
-      "name": "@flashcard/web",
+      "name": "@versado/web",
       "version": "0.0.1",
       "dependencies": {
-        "@flashcard/algorithms": "workspace:*",
-        "@flashcard/auth": "workspace:*",
-        "@flashcard/core": "workspace:*",
-        "@flashcard/storage": "workspace:*",
-        "@flashcard/sync": "workspace:*",
-        "@flashcard/ui": "workspace:*",
-        "@flashcard/validation": "workspace:*",
         "@tailwindcss/vite": "^4.1.18",
+        "@versado/algorithms": "workspace:*",
+        "@versado/auth": "workspace:*",
+        "@versado/core": "workspace:*",
+        "@versado/storage": "workspace:*",
+        "@versado/sync": "workspace:*",
+        "@versado/ui": "workspace:*",
+        "@versado/validation": "workspace:*",
         "clsx": "^2.1.1",
         "lucide-react": "^0.564.0",
         "react": "^18.2.0",
@@ -65,7 +65,7 @@
       },
     },
     "packages/algorithms": {
-      "name": "@flashcard/algorithms",
+      "name": "@versado/algorithms",
       "version": "0.0.1",
       "devDependencies": {
         "@types/bun": "latest",
@@ -73,10 +73,10 @@
       },
     },
     "packages/auth": {
-      "name": "@flashcard/auth",
+      "name": "@versado/auth",
       "version": "0.0.1",
       "dependencies": {
-        "@flashcard/core": "workspace:*",
+        "@versado/core": "workspace:*",
       },
       "devDependencies": {
         "@types/bun": "latest",
@@ -84,20 +84,20 @@
       },
     },
     "packages/core": {
-      "name": "@flashcard/core",
+      "name": "@versado/core",
       "version": "0.0.1",
       "dependencies": {
-        "@flashcard/algorithms": "workspace:*",
+        "@versado/algorithms": "workspace:*",
       },
       "devDependencies": {
         "typescript": "^5.3.3",
       },
     },
     "packages/storage": {
-      "name": "@flashcard/storage",
+      "name": "@versado/storage",
       "version": "0.0.1",
       "dependencies": {
-        "@flashcard/core": "workspace:*",
+        "@versado/core": "workspace:*",
         "idb": "^8.0.0",
       },
       "devDependencies": {
@@ -105,20 +105,20 @@
       },
     },
     "packages/sync": {
-      "name": "@flashcard/sync",
+      "name": "@versado/sync",
       "version": "0.0.1",
       "dependencies": {
-        "@flashcard/storage": "workspace:*",
+        "@versado/storage": "workspace:*",
       },
       "devDependencies": {
         "typescript": "^5.3.3",
       },
     },
     "packages/ui": {
-      "name": "@flashcard/ui",
+      "name": "@versado/ui",
       "version": "0.0.1",
       "dependencies": {
-        "@flashcard/algorithms": "workspace:*",
+        "@versado/algorithms": "workspace:*",
         "clsx": "^2.1.1",
         "tailwind-merge": "^3.4.0",
       },
@@ -133,7 +133,7 @@
       },
     },
     "packages/validation": {
-      "name": "@flashcard/validation",
+      "name": "@versado/validation",
       "version": "0.0.1",
       "dependencies": {
         "zod": "^3.24.0",
@@ -383,24 +383,6 @@
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.19.12", "", { "os": "win32", "cpu": "x64" }, "sha512-T1QyPSDCyMXaO3pzBkF96E8xMkiRYbUEZADd29SyPGabqxMViNoii+NcK7eWJAEoU6RZyEm5lVSIjTmcdoB9HA=="],
 
-    "@flashcard/algorithms": ["@flashcard/algorithms@workspace:packages/algorithms"],
-
-    "@flashcard/api": ["@flashcard/api@workspace:apps/api"],
-
-    "@flashcard/auth": ["@flashcard/auth@workspace:packages/auth"],
-
-    "@flashcard/core": ["@flashcard/core@workspace:packages/core"],
-
-    "@flashcard/storage": ["@flashcard/storage@workspace:packages/storage"],
-
-    "@flashcard/sync": ["@flashcard/sync@workspace:packages/sync"],
-
-    "@flashcard/ui": ["@flashcard/ui@workspace:packages/ui"],
-
-    "@flashcard/validation": ["@flashcard/validation@workspace:packages/validation"],
-
-    "@flashcard/web": ["@flashcard/web@workspace:apps/web"],
-
     "@isaacs/cliui": ["@isaacs/cliui@9.0.0", "", {}, "sha512-AokJm4tuBHillT+FpMtxQ60n8ObyXBatq7jD2/JA9dxbDDokKQm8KMht5ibGzLVU9IJDIKK4TPKgMHEYMn3lMg=="],
 
     "@jridgewell/gen-mapping": ["@jridgewell/gen-mapping@0.3.13", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.0", "@jridgewell/trace-mapping": "^0.3.24" } }, "sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA=="],
@@ -542,6 +524,24 @@
     "@types/resolve": ["@types/resolve@1.20.2", "", {}, "sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q=="],
 
     "@types/trusted-types": ["@types/trusted-types@2.0.7", "", {}, "sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw=="],
+
+    "@versado/algorithms": ["@versado/algorithms@workspace:packages/algorithms"],
+
+    "@versado/api": ["@versado/api@workspace:apps/api"],
+
+    "@versado/auth": ["@versado/auth@workspace:packages/auth"],
+
+    "@versado/core": ["@versado/core@workspace:packages/core"],
+
+    "@versado/storage": ["@versado/storage@workspace:packages/storage"],
+
+    "@versado/sync": ["@versado/sync@workspace:packages/sync"],
+
+    "@versado/ui": ["@versado/ui@workspace:packages/ui"],
+
+    "@versado/validation": ["@versado/validation@workspace:packages/validation"],
+
+    "@versado/web": ["@versado/web@workspace:apps/web"],
 
     "@vitejs/plugin-react": ["@vitejs/plugin-react@4.7.0", "", { "dependencies": { "@babel/core": "^7.28.0", "@babel/plugin-transform-react-jsx-self": "^7.27.1", "@babel/plugin-transform-react-jsx-source": "^7.27.1", "@rolldown/pluginutils": "1.0.0-beta.27", "@types/babel__core": "^7.20.5", "react-refresh": "^0.17.0" }, "peerDependencies": { "vite": "^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0" } }, "sha512-gUu9hwfWvvEDBBmgtAowQCojwZmJ5mcLn3aufeCsitijs3+f2NsrPtlAWIR6OPiqljl96GVCUbLe0HyqIpVaoA=="],
 

@@ -3,7 +3,7 @@ import { Modal } from "@/components/shared/Modal";
 import { useToast } from "@/contexts/ToastContext";
 import { profileApi } from "@/lib/profile-api";
 import { ApiError } from "@/lib/api-client";
-import { Input, Button } from "@flashcard/ui";
+import { Input, Button } from "@versado/ui";
 
 interface ChangePasswordModalProps {
   isOpen: boolean;

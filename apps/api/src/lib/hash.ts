@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { BCRYPT_ROUNDS } from "@flashcard/auth";
+import { BCRYPT_ROUNDS } from "@versado/auth";
 
 export async function hashPassword(password: string): Promise<string> {
   return bcrypt.hash(password, BCRYPT_ROUNDS);

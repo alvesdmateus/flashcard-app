@@ -139,7 +139,7 @@ export function parseJSONImport(text: string): DeckExport {
   }
 
   throw new Error(
-    "Unrecognized file format. Expected a Flashcard App export file."
+    "Unrecognized file format. Expected a Versado export file."
   );
 }
 

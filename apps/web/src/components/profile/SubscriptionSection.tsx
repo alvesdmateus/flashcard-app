@@ -77,7 +77,7 @@ export function SubscriptionSection() {
         <SettingRow
           icon={<CreditCard className="h-5 w-5" />}
           label="Current Plan"
-          value="Premium"
+          value="Fluent"
         />
         <SettingRow
           icon={<Calendar className="h-5 w-5" />}
@@ -114,7 +114,7 @@ export function SubscriptionSection() {
         onClose={() => setIsCancelOpen(false)}
         onConfirm={handleCancel}
         title="Cancel Subscription"
-        message="Your premium features will remain active until the end of your current billing period. You can resume anytime before then."
+        message="Your Fluent features will remain active until the end of your current billing period. You can resume anytime before then."
         confirmLabel="Cancel Subscription"
         variant="danger"
         isLoading={isCanceling}

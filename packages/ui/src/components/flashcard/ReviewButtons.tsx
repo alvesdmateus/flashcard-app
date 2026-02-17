@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { ReviewRating } from "@flashcard/algorithms";
+import type { ReviewRating } from "@versado/algorithms";
 
 export interface ReviewButtonConfig {
   rating: ReviewRating;

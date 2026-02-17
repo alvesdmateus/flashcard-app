@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { eq } from "drizzle-orm";
-import { createCheckoutSchema } from "@flashcard/validation";
+import { createCheckoutSchema } from "@versado/validation";
 import * as billingService from "../services/billing-service";
 import { validate } from "../lib/validate";
 import { AppError } from "../middleware/error-handler";
@@ -9,11 +9,17 @@ import { users } from "../db/schema";
 
 export const billingRoutes = new Hono();
 
+// Get available prices for the Fluent product
+billingRoutes.get("/prices", async (c) => {
+  const prices = await billingService.getProductPrices();
+  return c.json({ prices });
+});
+
 // Create Stripe Checkout session
 billingRoutes.post("/checkout", async (c) => {
   const user = c.get("user");
-  if (user.tier === "premium") {
-    throw new AppError(400, "Already on premium plan", "ALREADY_PREMIUM");
+  if (user.tier === "fluent") {
+    throw new AppError(400, "Already on Fluent plan", "ALREADY_FLUENT");
   }
 
   const body = await c.req.json();

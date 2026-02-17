@@ -4,6 +4,49 @@ import { db } from "../db";
 import { users, subscriptions } from "../db/schema";
 import { env } from "../env";
 
+// --- Dynamic pricing ---
+
+export interface FormattedPrice {
+  id: string;
+  currency: string;
+  unitAmount: number;
+  recurring: {
+    interval: "month" | "year";
+    intervalCount: number;
+  } | null;
+}
+
+let priceCache: { prices: FormattedPrice[]; fetchedAt: number } | null = null;
+const PRICE_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+export async function getProductPrices(): Promise<FormattedPrice[]> {
+  if (priceCache && Date.now() - priceCache.fetchedAt < PRICE_CACHE_TTL) {
+    return priceCache.prices;
+  }
+
+  const { data } = await stripe.prices.list({
+    product: env.STRIPE_PRODUCT_ID_FLUENT,
+    active: true,
+  });
+
+  const prices: FormattedPrice[] = data.map((p) => ({
+    id: p.id,
+    currency: p.currency,
+    unitAmount: p.unit_amount ?? 0,
+    recurring: p.recurring
+      ? {
+          interval: p.recurring.interval as "month" | "year",
+          intervalCount: p.recurring.interval_count,
+        }
+      : null,
+  }));
+
+  priceCache = { prices, fetchedAt: Date.now() };
+  return prices;
+}
+
+// --- Customer & checkout ---
+
 export async function getOrCreateStripeCustomer(
   userId: string,
   email: string

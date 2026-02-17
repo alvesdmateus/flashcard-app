@@ -59,7 +59,7 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   // Update user tier
   await db
     .update(users)
-    .set({ tier: "premium", updatedAt: new Date() })
+    .set({ tier: "fluent", updatedAt: new Date() })
     .where(eq(users.id, userId));
 
   // Upsert subscription record
@@ -98,7 +98,7 @@ async function handleSubscriptionUpdated(sub: Stripe.Subscription) {
     .limit(1);
   if (!subRecord) return;
 
-  const tier = sub.status === "active" ? "premium" : "free";
+  const tier = sub.status === "active" ? "fluent" : "free";
 
   await db
     .update(subscriptions)

@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import type { UserTier } from "@flashcard/core/entities";
+import type { UserTier } from "@versado/core/entities";
 import { openai } from "../lib/openai";
 import { db } from "../db";
 import { users } from "../db/schema";
@@ -93,7 +93,7 @@ export async function checkAIUsage(userId: string, tier: UserTier) {
   if (used >= limits.aiGenerationLimit) {
     throw new AppError(
       403,
-      `Free plan is limited to ${limits.aiGenerationLimit} AI generations. Upgrade to Premium for unlimited generations.`,
+      `Free plan is limited to ${limits.aiGenerationLimit} AI generations. Go Fluent for unlimited AI generations.`,
       "AI_LIMIT_REACHED"
     );
   }

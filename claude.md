@@ -1,4 +1,4 @@
-# Flashcard App
+# Versado
 
 Monorepo flashcard application — React PWA + Hono API + PostgreSQL.
 
@@ -37,7 +37,7 @@ Docker: `docker compose up -d` starts PostgreSQL on port 5433.
 
 ## Workspace Conventions
 
-- Package naming: `@flashcard/<name>`, deps via `workspace:*`
+- Package naming: `@versado/<name>`, deps via `workspace:*`
 - Each package has own `package.json`, `tsconfig.json`
 - Barrel exports via `index.ts` in each module
 - Co-located tests: `*.test.ts` alongside source
@@ -70,18 +70,18 @@ React Router v7 with `createBrowserRouter`. Layout route wraps `AppLayout` (incl
 - `ConfirmDialog` — Built on Modal, danger variant for destructive actions
 - `EmptyState` — Icon + title + description + optional action button
 - `DropdownMenu` — Click-outside close, items with optional icon, danger variant
-- `Textarea` — Styled like `Input` from `@flashcard/ui`, with `label?` and `error?`
+- `Textarea` — Styled like `Input` from `@versado/ui`, with `label?` and `error?`
 - `Skeleton` + `DeckGridSkeleton` + `CardListSkeleton` + `HomeSkeleton` — Loading placeholders
 - `ErrorBoundary` — Class component, catches render errors, shows reload screen
 
 ### UI Import Pattern
 ```typescript
-import { Button, Input, CircularProgress } from "@flashcard/ui";
-import { cn } from "@flashcard/ui";                    // clsx + tailwind-merge
+import { Button, Input, CircularProgress } from "@versado/ui";
+import { cn } from "@versado/ui";                    // clsx + tailwind-merge
 import { Modal, ConfirmDialog } from "@/components/shared";
 ```
 
-**Note:** `cn` is exported from main `@flashcard/ui` barrel — NOT `@flashcard/ui/lib`.
+**Note:** `cn` is exported from main `@versado/ui` barrel — NOT `@versado/ui/lib`.
 
 ### State Pattern
 - Local state via `useState` for form/UI state
@@ -123,23 +123,23 @@ User preferences stored as JSONB with typed shape including `favoriteDeckIds`.
 - Marketplace: `GET /api/marketplace/decks`, `POST /api/marketplace/purchase`
 
 ### Validation
-Shared Zod schemas in `@flashcard/validation`. API validates with `validate(schema, body)` helper. Frontend uses same schemas where applicable.
+Shared Zod schemas in `@versado/validation`. API validates with `validate(schema, body)` helper. Frontend uses same schemas where applicable.
 
 ## Shared Packages
 
-### @flashcard/algorithms
+### @versado/algorithms
 ```typescript
-import { calculateSM2 } from "@flashcard/algorithms";
+import { calculateSM2 } from "@versado/algorithms";
 // Rating: 1=Again, 2=Hard, 3=Good, 4=Easy
 const result = calculateSM2({ easeFactor: 2.5, interval: 6, repetitions: 2 }, 3);
 ```
 
-### @flashcard/ui
+### @versado/ui
 Components: `Button`, `Input`, `CircularProgress`, `FlashcardView`, `ReviewButtons`, `StudyProgress`, `SessionSummary`.
-Design tokens: `colors`, `spacing`, `fontSize` from `@flashcard/ui/tokens`.
+Design tokens: `colors`, `spacing`, `fontSize` from `@versado/ui/tokens`.
 Tailwind v4 with CSS custom properties for primary/neutral/success/error scales.
 
-### @flashcard/validation
+### @versado/validation
 Schemas: `registerSchema`, `loginSchema`, `changePasswordSchema`, `createDeckSchema`, `updateDeckSchema`, `createFlashcardSchema`, `batchCreateFlashcardsSchema`, `updatePreferencesSchema`.
 
 ## Environment
@@ -147,7 +147,7 @@ Schemas: `registerSchema`, `loginSchema`, `changePasswordSchema`, `createDeckSch
 ```
 # apps/api/.env
 PORT=3000
-DATABASE_URL=postgresql://postgres:postgres@localhost:5433/flashcard
+DATABASE_URL=postgresql://postgres:postgres@localhost:5433/versado
 JWT_SECRET=<min 32 chars>
 WEB_URL=http://localhost:5173
 NODE_ENV=development

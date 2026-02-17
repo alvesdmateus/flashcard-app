@@ -1,5 +1,5 @@
 import { CheckCircle, XCircle, Info, X } from "lucide-react";
-import { cn } from "@flashcard/ui";
+import { cn } from "@versado/ui";
 
 interface ToastProps {
   message: string;

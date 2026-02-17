@@ -1,5 +1,5 @@
 import { Flame } from "lucide-react";
-import { StreakBadge } from "@flashcard/ui";
+import { StreakBadge } from "@versado/ui";
 
 export interface HomeHeaderProps {
   userName: string;

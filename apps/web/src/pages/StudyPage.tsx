@@ -1,14 +1,14 @@
 import { useEffect, useMemo, useRef } from "react";
-import type { ReviewRating } from "@flashcard/algorithms";
-import { IndexedDBAdapter } from "@flashcard/storage";
-import { StudyQueueService } from "@flashcard/core/services";
+import type { ReviewRating } from "@versado/algorithms";
+import { IndexedDBAdapter } from "@versado/storage";
+import { StudyQueueService } from "@versado/core/services";
 import {
   FlashcardView,
   ReviewButtons,
   ReviewKeyboardHandler,
   StudyProgress,
   SessionSummary,
-} from "@flashcard/ui/components";
+} from "@versado/ui/components";
 import { useStudySession } from "../hooks/useStudySession";
 import { FlashcardRepositoryImpl, CardProgressRepositoryImpl } from "../repositories";
 

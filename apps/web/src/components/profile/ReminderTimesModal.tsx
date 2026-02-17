@@ -4,7 +4,7 @@ import { Modal } from "@/components/shared/Modal";
 import { useToast } from "@/contexts/ToastContext";
 import { useErrorNotification } from "@/contexts/ErrorNotificationContext";
 import { profileApi } from "@/lib/profile-api";
-import { Button } from "@flashcard/ui";
+import { Button } from "@versado/ui";
 
 interface ReminderTimesModalProps {
   isOpen: boolean;

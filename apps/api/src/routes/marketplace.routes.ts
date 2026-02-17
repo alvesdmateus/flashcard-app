@@ -5,7 +5,7 @@ import {
   listMarketplaceSchema,
   listDeckSchema,
   createReviewSchema,
-} from "@flashcard/validation";
+} from "@versado/validation";
 import { db } from "../db";
 import { decks, users, flashcards, marketplaceReviews, purchases } from "../db/schema";
 import { validate } from "../lib/validate";

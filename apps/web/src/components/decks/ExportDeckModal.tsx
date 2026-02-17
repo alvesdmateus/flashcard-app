@@ -5,7 +5,7 @@ import { useToast } from "@/contexts/ToastContext";
 import { useErrorNotification } from "@/contexts/ErrorNotificationContext";
 import { exportDeckAsJSON, exportDeckAsCSV } from "@/lib/deck-io";
 import type { DeckResponse, FlashcardResponse } from "@/lib/deck-api";
-import { Button } from "@flashcard/ui";
+import { Button } from "@versado/ui";
 
 interface ExportDeckModalProps {
   isOpen: boolean;

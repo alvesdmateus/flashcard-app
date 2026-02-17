@@ -8,3 +8,4 @@ export { Skeleton, DeckGridSkeleton, CardListSkeleton, HomeSkeleton } from "./Sk
 export { ErrorBoundary } from "./ErrorBoundary";
 export { ErrorNotification } from "./ErrorNotification";
 export { SyncStatusIndicator } from "./SyncStatusIndicator";
+export { LimitReachedModal } from "./LimitReachedModal";

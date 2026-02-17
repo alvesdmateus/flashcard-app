@@ -8,8 +8,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
   STRIPE_SECRET_KEY: z.string().startsWith("sk_"),
   STRIPE_WEBHOOK_SECRET: z.string().startsWith("whsec_"),
-  STRIPE_PRICE_ID_PREMIUM_MONTHLY: z.string().startsWith("price_"),
-  STRIPE_PRICE_ID_PREMIUM_YEARLY: z.string().startsWith("price_").optional(),
+  STRIPE_PRODUCT_ID_FLUENT: z.string().startsWith("prod_"),
   OPENAI_API_KEY: z.string().startsWith("sk-"),
 });
 

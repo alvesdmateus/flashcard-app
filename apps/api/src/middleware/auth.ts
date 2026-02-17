@@ -1,6 +1,6 @@
 import type { Context, Next } from "hono";
 import { verify } from "../lib/jwt";
-import type { AuthUser } from "@flashcard/auth";
+import type { AuthUser } from "@versado/auth";
 
 // Extend Hono context to include auth user
 declare module "hono" {

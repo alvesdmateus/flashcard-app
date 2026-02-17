@@ -1,8 +1,10 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router";
 import { X, ChevronUp, MoreVertical } from "lucide-react";
-import type { ReviewRating } from "@flashcard/algorithms";
+import type { ReviewRating } from "@versado/algorithms";
 import { studyApi, type DueCard } from "@/lib/study-api";
+import { ApiError } from "@/lib/api-client";
+import { LimitReachedModal } from "@/components/shared/LimitReachedModal";
 
 // ---------------------------------------------------------------------------
 // Rating button config
@@ -99,6 +101,7 @@ export function StudySessionPage() {
   const [reviewedCount, setReviewedCount] = useState(0);
   const [ratingCounts, setRatingCounts] = useState({ 1: 0, 2: 0, 3: 0, 4: 0 });
   const [totalResponseTime, setTotalResponseTime] = useState(0);
+  const [isLimitReached, setIsLimitReached] = useState(false);
   const isResettingRef = useRef(false);
   const cardStartTimeRef = useRef(Date.now());
 
@@ -155,8 +158,12 @@ export function StudySessionPage() {
           rating,
           responseTimeMs
         );
-      } catch {
-        // Continue even if submission fails
+      } catch (err) {
+        if (err instanceof ApiError && err.code === "REVIEW_LIMIT_REACHED") {
+          setIsLimitReached(true);
+          return;
+        }
+        // Continue even if other submissions fail
       }
 
       setReviewedCount((prev) => prev + 1);
@@ -443,6 +450,17 @@ export function StudySessionPage() {
           </button>
         )}
       </footer>
+
+      <LimitReachedModal
+        isOpen={isLimitReached}
+        onClose={() => {
+          setIsLimitReached(false);
+          if (sessionId) {
+            studyApi.endSession(sessionId).catch(() => {});
+          }
+          navigate("/");
+        }}
+      />
     </div>
   );
 }

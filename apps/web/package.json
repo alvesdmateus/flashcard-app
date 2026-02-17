@@ -1,5 +1,5 @@
 {
-  "name": "@flashcard/web",
+  "name": "@versado/web",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -11,13 +11,13 @@
     "test": "bun test"
   },
   "dependencies": {
-    "@flashcard/algorithms": "workspace:*",
-    "@flashcard/auth": "workspace:*",
-    "@flashcard/core": "workspace:*",
-    "@flashcard/storage": "workspace:*",
-    "@flashcard/ui": "workspace:*",
-    "@flashcard/sync": "workspace:*",
-    "@flashcard/validation": "workspace:*",
+    "@versado/algorithms": "workspace:*",
+    "@versado/auth": "workspace:*",
+    "@versado/core": "workspace:*",
+    "@versado/storage": "workspace:*",
+    "@versado/ui": "workspace:*",
+    "@versado/sync": "workspace:*",
+    "@versado/validation": "workspace:*",
     "@tailwindcss/vite": "^4.1.18",
     "clsx": "^2.1.1",
     "lucide-react": "^0.564.0",

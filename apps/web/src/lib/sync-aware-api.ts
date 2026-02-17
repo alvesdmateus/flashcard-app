@@ -1,4 +1,4 @@
-import type { SyncEngine, SyncStorage } from "@flashcard/sync";
+import type { SyncEngine, SyncStorage } from "@versado/sync";
 import { deckApi, type DeckResponse, type FlashcardResponse } from "./deck-api";
 import { studyApi, type DueCard, type ReviewResult } from "./study-api";
 import { flashcardApi } from "./flashcard-api";

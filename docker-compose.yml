@@ -1,15 +1,26 @@
 services:
   postgres:
     image: postgres:17-alpine
-    container_name: flashcard-db
+    container_name: versado-db
     ports:
       - "5433:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: flashcard
+      POSTGRES_DB: versado
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  stripe-cli:
+    image: stripe/stripe-cli:latest
+    container_name: versado-stripe-cli
+    command: listen --forward-to host.docker.internal:3000/webhooks/stripe --skip-verify
+    volumes:
+      - stripe-config:/root/.config/stripe
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
 volumes:
   pgdata:
+  stripe-config:
+    external: true

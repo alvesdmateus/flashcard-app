@@ -4,7 +4,7 @@ import {
   updateProfileSchema,
   changePasswordSchema,
   updatePreferencesSchema,
-} from "@flashcard/validation";
+} from "@versado/validation";
 import { db } from "../db";
 import { users } from "../db/schema";
 import { AppError } from "../middleware/error-handler";

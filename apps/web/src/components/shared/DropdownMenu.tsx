@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, type ReactNode } from "react";
-import { cn } from "@flashcard/ui";
+import { cn } from "@versado/ui";
 
 interface DropdownMenuItem {
   label: string;

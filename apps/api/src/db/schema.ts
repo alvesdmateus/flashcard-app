@@ -12,7 +12,7 @@ import {
 } from "drizzle-orm/pg-core";
 
 // Enums
-export const userTierEnum = pgEnum("user_tier", ["free", "premium", "team"]);
+export const userTierEnum = pgEnum("user_tier", ["free", "fluent"]);
 export const followTypeEnum = pgEnum("follow_type", ["user", "tag"]);
 export const deckVisibilityEnum = pgEnum("deck_visibility", [
   "private",

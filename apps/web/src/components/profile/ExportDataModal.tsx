@@ -5,7 +5,7 @@ import { useToast } from "@/contexts/ToastContext";
 import { useErrorNotification } from "@/contexts/ErrorNotificationContext";
 import { deckApi } from "@/lib/deck-api";
 import { downloadFile } from "@/lib/deck-io";
-import { Button } from "@flashcard/ui";
+import { Button } from "@versado/ui";
 
 interface ExportDataModalProps {
   isOpen: boolean;
@@ -35,7 +35,7 @@ export function ExportDataModal({ isOpen, onClose }: ExportDataModalProps) {
       );
       downloadFile(
         content,
-        `flashcard-export-${new Date().toISOString().slice(0, 10)}.json`,
+        `versado-export-${new Date().toISOString().slice(0, 10)}.json`,
         "application/json"
       );
 

@@ -1,5 +1,5 @@
 {
-  "name": "@flashcard/api",
+  "name": "@versado/api",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -14,10 +14,10 @@
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
-    "@flashcard/algorithms": "workspace:*",
-    "@flashcard/auth": "workspace:*",
-    "@flashcard/core": "workspace:*",
-    "@flashcard/validation": "workspace:*",
+    "@versado/algorithms": "workspace:*",
+    "@versado/auth": "workspace:*",
+    "@versado/core": "workspace:*",
+    "@versado/validation": "workspace:*",
     "bcrypt": "^5.1.1",
     "drizzle-orm": "^0.36.0",
     "hono": "^4.6.0",

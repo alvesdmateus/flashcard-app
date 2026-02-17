@@ -1,4 +1,4 @@
-import { cn } from "@flashcard/ui";
+import { cn } from "@versado/ui";
 
 interface FollowButtonProps {
   isFollowing: boolean;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Input } from "@flashcard/ui";
+import { Button, Input } from "@versado/ui";
 import { Modal } from "@/components/shared";
 import { marketplaceApi } from "@/lib/marketplace-api";
 import { useToast } from "@/contexts/ToastContext";

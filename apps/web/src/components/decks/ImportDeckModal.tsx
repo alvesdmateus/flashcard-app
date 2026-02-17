@@ -6,7 +6,7 @@ import { useToast } from "@/contexts/ToastContext";
 import { deckApi, type DeckResponse } from "@/lib/deck-api";
 import { flashcardApi } from "@/lib/flashcard-api";
 import { parseJSONImport, parseCSVImport, type DeckExport } from "@/lib/deck-io";
-import { Input, Button } from "@flashcard/ui";
+import { Input, Button } from "@versado/ui";
 
 interface ImportDeckModalProps {
   isOpen: boolean;

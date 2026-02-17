@@ -1,8 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
-import { loginSchema } from "@flashcard/validation";
-import { Button, Input, Logo, Divider, SocialButton } from "@flashcard/ui";
+import { loginSchema } from "@versado/validation";
+import { Button, Input, Logo, Divider, SocialButton } from "@versado/ui";
 import { useAuth } from "@/hooks/useAuth";
 import { ApiError } from "@/lib/api-client";
 
@@ -93,7 +93,7 @@ export function LoginPage() {
       {/* Heading */}
       <h1 className="text-2xl font-bold text-neutral-900">Welcome Back</h1>
       <p className="mt-1 text-sm text-neutral-500">
-        Log in to your premium learning dashboard
+        Log in to your learning dashboard
       </p>
 
       {/* Form */}

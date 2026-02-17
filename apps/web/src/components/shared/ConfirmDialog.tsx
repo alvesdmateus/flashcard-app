@@ -1,5 +1,5 @@
 import { Modal } from "./Modal";
-import { Button } from "@flashcard/ui";
+import { Button } from "@versado/ui";
 
 interface ConfirmDialogProps {
   isOpen: boolean;

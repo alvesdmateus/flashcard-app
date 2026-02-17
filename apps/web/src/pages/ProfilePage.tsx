@@ -97,7 +97,7 @@ export function ProfilePage() {
       />
 
       {user?.tier === "free" && <UpgradeBanner />}
-      {user?.tier === "premium" && <SubscriptionSection />}
+      {user?.tier === "fluent" && <SubscriptionSection />}
 
       {/* Appearance */}
       <SettingsSection label="Appearance">
@@ -184,7 +184,7 @@ export function ProfilePage() {
 
       {/* Footer */}
       <div className="mt-8 mb-2 flex flex-col items-center gap-1 px-5">
-        <p className="text-xs text-neutral-400">Flashcard App v2.0.0</p>
+        <p className="text-xs text-neutral-400">Versado v2.0.0</p>
         <div className="flex gap-3">
           <button className="text-xs text-neutral-400 hover:text-neutral-600">Terms</button>
           <button className="text-xs text-neutral-400 hover:text-neutral-600">Privacy</button>

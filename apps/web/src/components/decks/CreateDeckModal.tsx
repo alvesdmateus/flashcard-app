@@ -3,7 +3,7 @@ import { Modal } from "@/components/shared/Modal";
 import { Textarea } from "@/components/shared/Textarea";
 import { useToast } from "@/contexts/ToastContext";
 import { deckApi, type DeckResponse } from "@/lib/deck-api";
-import { Input, Button } from "@flashcard/ui";
+import { Input, Button } from "@versado/ui";
 
 interface CreateDeckModalProps {
   isOpen: boolean;

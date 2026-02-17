@@ -1,12 +1,12 @@
 import { useState, useCallback, useRef, useEffect } from "react";
-import type { ReviewRating } from "@flashcard/algorithms";
+import type { ReviewRating } from "@versado/algorithms";
 import {
   createStudySession,
   addReview,
   endSession,
   type StudySession,
-} from "@flashcard/core/entities";
-import type { StudyQueueService, StudyCard } from "@flashcard/core/services";
+} from "@versado/core/entities";
+import type { StudyQueueService, StudyCard } from "@versado/core/services";
 
 export type StudySessionState = "loading" | "studying" | "reviewing" | "complete" | "empty";
 

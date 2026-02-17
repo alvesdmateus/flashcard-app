@@ -1,4 +1,4 @@
-import { calculateSM2, type ReviewRating } from "@flashcard/algorithms";
+import { calculateSM2, type ReviewRating } from "@versado/algorithms";
 import type { CardProgress, CardStatus } from "../entities/card-progress";
 import type { Flashcard } from "../entities/flashcard";
 import type { CardProgressRepository } from "../repositories/card-progress-repository";

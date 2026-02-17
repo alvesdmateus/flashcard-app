@@ -1,4 +1,4 @@
-import type { StorageAdapter } from "@flashcard/storage";
+import type { StorageAdapter } from "@versado/storage";
 import type { OutboxEntry, SyncCollection, SyncMetadata, SyncOperation } from "./types";
 
 const OUTBOX_COLLECTION = "sync-outbox";

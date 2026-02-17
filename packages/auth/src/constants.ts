@@ -8,7 +8,7 @@ export const REFRESH_TOKEN_EXPIRY = 7 * 24 * 60 * 60;
 export const BCRYPT_ROUNDS = 12;
 
 /** Cookie name for the refresh token */
-export const REFRESH_TOKEN_COOKIE = "flashcard_refresh_token";
+export const REFRESH_TOKEN_COOKIE = "versado_refresh_token";
 
 /** Maximum failed login attempts before account lockout */
 export const MAX_LOGIN_ATTEMPTS = 10;

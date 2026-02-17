@@ -1,7 +1,7 @@
-import type { StorageAdapter } from "@flashcard/storage";
-import type { CardProgressRepository } from "@flashcard/core/repositories";
-import type { CardProgress, CreateCardProgressInput } from "@flashcard/core/entities";
-import { createCardProgress } from "@flashcard/core/entities";
+import type { StorageAdapter } from "@versado/storage";
+import type { CardProgressRepository } from "@versado/core/repositories";
+import type { CardProgress, CreateCardProgressInput } from "@versado/core/entities";
+import { createCardProgress } from "@versado/core/entities";
 
 const COLLECTION = "card-progress";
 

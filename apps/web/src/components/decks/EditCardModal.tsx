@@ -4,7 +4,7 @@ import { Textarea } from "@/components/shared/Textarea";
 import { useToast } from "@/contexts/ToastContext";
 import { flashcardApi } from "@/lib/flashcard-api";
 import type { FlashcardResponse } from "@/lib/deck-api";
-import { Button } from "@flashcard/ui";
+import { Button } from "@versado/ui";
 
 interface EditCardModalProps {
   isOpen: boolean;

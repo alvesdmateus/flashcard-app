@@ -1,9 +1,9 @@
-import { Button, Card, CardHeader, CardContent } from "@flashcard/ui";
+import { Button, Card, CardHeader, CardContent } from "@versado/ui";
 
 export function App() {
   return (
     <div className="app">
-      <h1>Flashcard App</h1>
+      <h1>Versado</h1>
       <Card>
         <CardHeader>Welcome</CardHeader>
         <CardContent>

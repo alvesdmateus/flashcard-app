@@ -1,5 +1,15 @@
 import { apiClient } from "./api-client";
 
+export interface Price {
+  id: string;
+  currency: string;
+  unitAmount: number;
+  recurring: {
+    interval: "month" | "year";
+    intervalCount: number;
+  } | null;
+}
+
 export interface Subscription {
   id: string;
   userId: string;
@@ -12,6 +22,10 @@ export interface Subscription {
 }
 
 export const billingApi = {
+  getPrices() {
+    return apiClient<{ prices: Price[] }>("/api/billing/prices");
+  },
+
   createCheckout(priceId: string) {
     return apiClient<{ url: string }>("/api/billing/checkout", {
       method: "POST",

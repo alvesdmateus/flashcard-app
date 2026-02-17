@@ -1,12 +1,13 @@
 import { Hono } from "hono";
-import { eq, and, lte } from "drizzle-orm";
-import { submitReviewSchema, startSessionSchema, idSchema } from "@flashcard/validation";
-import { calculateSM2 } from "@flashcard/algorithms";
-import type { ReviewRating } from "@flashcard/algorithms";
+import { eq, and, lte, gte, sql } from "drizzle-orm";
+import { submitReviewSchema, startSessionSchema, idSchema } from "@versado/validation";
+import { calculateSM2 } from "@versado/algorithms";
+import type { ReviewRating } from "@versado/algorithms";
 import { db } from "../db";
 import { cardProgress, flashcards, decks, studySessions } from "../db/schema";
 import { AppError } from "../middleware/error-handler";
 import { validate } from "../lib/validate";
+import { getLimits } from "../lib/feature-gates";
 
 export const studyRoutes = new Hono();
 
@@ -79,6 +80,31 @@ studyRoutes.post("/review", async (c) => {
   const user = c.get("user");
   const body = await c.req.json();
   const data = validate(submitReviewSchema, body);
+
+  // Check daily review limit
+  const limits = getLimits(user.tier);
+  if (limits.dailyReviewLimit !== Infinity) {
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
+
+    const [result] = await db
+      .select({ count: sql<number>`count(*)::int` })
+      .from(cardProgress)
+      .where(
+        and(
+          eq(cardProgress.userId, user.id),
+          gte(cardProgress.lastReviewedAt, todayStart)
+        )
+      );
+
+    if ((result?.count ?? 0) >= limits.dailyReviewLimit) {
+      throw new AppError(
+        403,
+        `Free plan is limited to ${limits.dailyReviewLimit} reviews per day. Go Fluent for unlimited reviews.`,
+        "REVIEW_LIMIT_REACHED"
+      );
+    }
+  }
 
   const results = await db
     .select()

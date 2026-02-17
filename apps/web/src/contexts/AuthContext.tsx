@@ -6,8 +6,8 @@ import {
   useRef,
   type ReactNode,
 } from "react";
-import type { PublicProfile } from "@flashcard/auth";
-import { ACCESS_TOKEN_EXPIRY } from "@flashcard/auth";
+import type { PublicProfile } from "@versado/auth";
+import { ACCESS_TOKEN_EXPIRY } from "@versado/auth";
 import { authApi } from "@/lib/auth-api";
 import { setAccessToken } from "@/lib/api-client";
 

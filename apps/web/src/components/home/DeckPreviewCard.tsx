@@ -1,5 +1,5 @@
 import { Layers } from "lucide-react";
-import { CircularProgress } from "@flashcard/ui";
+import { CircularProgress } from "@versado/ui";
 
 export interface DeckPreviewCardProps {
   name: string;

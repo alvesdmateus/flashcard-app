@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Button } from "@flashcard/ui";
+import { Button } from "@versado/ui";
 
 interface EmptyStateProps {
   icon?: ReactNode;

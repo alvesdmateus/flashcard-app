@@ -1,8 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
-import { registerSchema } from "@flashcard/validation";
-import { Button, Input, Logo } from "@flashcard/ui";
+import { registerSchema } from "@versado/validation";
+import { Button, Input, Logo } from "@versado/ui";
 import { useAuth } from "@/hooks/useAuth";
 import { ApiError } from "@/lib/api-client";
 

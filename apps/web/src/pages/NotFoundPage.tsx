@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { ChevronLeft, Home } from "lucide-react";
-import { Button } from "@flashcard/ui";
+import { Button } from "@versado/ui";
 
 function NotFoundIcon() {
   return (

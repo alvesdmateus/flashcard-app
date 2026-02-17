@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "@flashcard/ui";
+import { Button } from "@versado/ui";
 import { Textarea } from "@/components/shared";
 import { marketplaceApi, type MarketplaceReview } from "@/lib/marketplace-api";
 import { useToast } from "@/contexts/ToastContext";

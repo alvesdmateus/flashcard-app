@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
-import type { TokenPayload } from "@flashcard/auth";
-import { ACCESS_TOKEN_EXPIRY } from "@flashcard/auth";
+import type { TokenPayload } from "@versado/auth";
+import { ACCESS_TOKEN_EXPIRY } from "@versado/auth";
 import { env } from "../env";
 
 export function sign(payload: Omit<TokenPayload, "iat" | "exp">): string {

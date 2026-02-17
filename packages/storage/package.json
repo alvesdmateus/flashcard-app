@@ -1,5 +1,5 @@
 {
-  "name": "@flashcard/storage",
+  "name": "@versado/storage",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -14,7 +14,7 @@
     "test": "bun test"
   },
   "dependencies": {
-    "@flashcard/core": "workspace:*",
+    "@versado/core": "workspace:*",
     "idb": "^8.0.0"
   },
   "devDependencies": {

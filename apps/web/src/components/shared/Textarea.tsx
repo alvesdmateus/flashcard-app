@@ -1,5 +1,5 @@
 import { forwardRef, useId, type TextareaHTMLAttributes } from "react";
-import { cn } from "@flashcard/ui";
+import { cn } from "@versado/ui";
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;

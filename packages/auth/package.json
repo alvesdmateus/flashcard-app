@@ -1,5 +1,5 @@
 {
-  "name": "@flashcard/auth",
+  "name": "@versado/auth",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@flashcard/core": "workspace:*"
+    "@versado/core": "workspace:*"
   },
   "devDependencies": {
     "@types/bun": "latest",

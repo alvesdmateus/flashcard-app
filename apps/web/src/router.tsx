@@ -12,6 +12,7 @@ import { StudySessionPage } from "./pages/StudySessionPage";
 import { DeckDetailPage } from "./pages/DeckDetailPage";
 import { MarketplaceDetailPage } from "./pages/MarketplaceDetailPage";
 import { BillingPage } from "./pages/BillingPage";
+import { FluentPage } from "./pages/FluentPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
 export const router = createBrowserRouter([
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
       { path: "market/:deckId", element: <MarketplaceDetailPage /> },
       { path: "profile", element: <ProfilePage /> },
       { path: "billing", element: <BillingPage /> },
+      { path: "fluent", element: <FluentPage /> },
       { path: "not-found", element: <NotFoundPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],

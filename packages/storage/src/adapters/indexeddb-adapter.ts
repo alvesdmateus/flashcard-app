@@ -6,7 +6,7 @@ import type {
   TransactionContext,
 } from "../storage-adapter";
 
-const DB_NAME = "flashcard-app";
+const DB_NAME = "versado";
 const DB_VERSION = 2;
 
 const COLLECTIONS = [

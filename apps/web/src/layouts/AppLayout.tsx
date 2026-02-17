@@ -1,5 +1,5 @@
 import { Outlet, useLocation, useNavigate } from "react-router";
-import { BottomNav, type BottomNavItem } from "@flashcard/ui";
+import { BottomNav, type BottomNavItem } from "@versado/ui";
 import { SyncStatusIndicator } from "@/components/shared/SyncStatusIndicator";
 import { UpdatePrompt } from "@/components/shared/UpdatePrompt";
 import { OfflineBanner } from "@/components/shared/OfflineBanner";

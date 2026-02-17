@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { Logo, Button } from "@flashcard/ui";
+import { Logo, Button } from "@versado/ui";
 
 export interface ErrorNotificationProps {
   isOpen: boolean;

@@ -1,4 +1,4 @@
-import { StatCard } from "@flashcard/ui";
+import { StatCard } from "@versado/ui";
 
 export interface StatsRowProps {
   mastered: number;

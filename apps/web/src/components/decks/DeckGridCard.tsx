@@ -1,5 +1,5 @@
 import { Clock, Heart, Layers } from "lucide-react";
-import { CircularProgress } from "@flashcard/ui";
+import { CircularProgress } from "@versado/ui";
 
 export interface DeckGridCardProps {
   name: string;

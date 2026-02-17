@@ -1,4 +1,4 @@
-import type { SyncStatus } from "@flashcard/sync";
+import type { SyncStatus } from "@versado/sync";
 import { useSync } from "@/hooks/useSync";
 
 const STATUS_CONFIG: Record<SyncStatus, { color: string; label: string; animate?: boolean }> = {

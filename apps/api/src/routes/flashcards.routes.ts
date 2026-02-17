@@ -5,7 +5,7 @@ import {
   updateFlashcardSchema,
   batchCreateFlashcardsSchema,
   idSchema,
-} from "@flashcard/validation";
+} from "@versado/validation";
 import { db } from "../db";
 import { flashcards, decks } from "../db/schema";
 import { AppError } from "../middleware/error-handler";
