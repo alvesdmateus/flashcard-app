@@ -24,17 +24,18 @@ export default defineConfig({
 
   webServer: [
     {
-      command: "bun run dev:api",
+      command: "bun run src/index.ts",
       url: "http://localhost:3000/health",
       reuseExistingServer: !process.env.CI,
-      cwd: "../",
-      timeout: 30_000,
+      cwd: "../apps/api",
+      timeout: 60_000,
       env: {
         DATABASE_URL:
           "postgresql://postgres:postgres@localhost:5433/versado_test",
         JWT_SECRET: "test-secret-key-that-is-at-least-32-chars-long",
         WEB_URL: "http://localhost:5173",
         NODE_ENV: "test",
+        PORT: "3000",
         STRIPE_SECRET_KEY: "sk_test_fake",
         STRIPE_WEBHOOK_SECRET: "whsec_test_fake",
         STRIPE_PRODUCT_ID_FLUENT: "prod_test_fake",
@@ -42,11 +43,11 @@ export default defineConfig({
       },
     },
     {
-      command: "bun run dev:web",
+      command: "bunx vite --port 5173",
       url: "http://localhost:5173",
       reuseExistingServer: !process.env.CI,
-      cwd: "../",
-      timeout: 30_000,
+      cwd: "../apps/web",
+      timeout: 60_000,
     },
   ],
 });
