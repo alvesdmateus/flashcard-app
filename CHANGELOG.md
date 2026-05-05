@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.24](https://github.com/alvesdmateus/versado-app/compare/versado-v0.1.23...versado-v0.1.24) (2026-05-05)
+
+
+### Bug Fixes
+
+* **web:** add robots.txt to fix Google indexing block ([#86](https://github.com/alvesdmateus/versado-app/issues/86)) ([a65fe64](https://github.com/alvesdmateus/versado-app/commit/a65fe64fbc886e40f9ec145246e7e5986ad6d43e))
+
 ## [0.1.23](https://github.com/alvesdmateus/versado-app/compare/versado-v0.1.22...versado-v0.1.23) (2026-04-27)
 
 
